@@ -1,5 +1,3 @@
-console.log("Hello World");
-
 // logic to get the random choice from the computer
 function getComputerChoice() {
     number = Math.random();
@@ -15,90 +13,90 @@ function getComputerChoice() {
 }
 
 // logic to get the choice from the human
-function getHumanChoice() {
-    choice = prompt('Please choose between "rock", "paper" or "scissors"!')
-    humanChoice = choice.toLowerCase();
-    if (humanChoice === "rock") {
-        return "rock";
-    }
-    else if (humanChoice === "paper") {
-        return "paper";
-    }
-    else if (humanChoice === "scissors") {
-        return "scissors";
-    }
-    else {
-        console.log ("Not a valid choice!")
-    }
-}
+
+const rockbutton = document.createElement("button");
+rockbutton.textContent = "Rock";
+document.body.appendChild(rockbutton);
+rockbutton.addEventListener('click', function (e) { 
+    playRound("rock",getComputerChoice())});
+
+const paperbutton = document.createElement("button");
+paperbutton.textContent = "Paper";
+document.body.appendChild(paperbutton);
+paperbutton.addEventListener('click', function (e) { 
+    playRound("paper",getComputerChoice())});
+
+const scissorsbutton = document.createElement("button");
+scissorsbutton.textContent = "Scissors";
+document.body.appendChild(scissorsbutton);
+scissorsbutton.addEventListener('click', function (e) { 
+    playRound("scissors",getComputerChoice())});
 
 // logic to get the human and computer scores
+
 let humanScore = 0
 let computerScore = 0
+
+const scores = document.createElement("div");
+scores.innerHTML = 'Scoreboard';
+document.body.appendChild(scores);
+
+const dispHumanScore = document.createElement("div");
+dispHumanScore.innerHTML = 'Human:' + ' ' + humanScore;
+scores.appendChild(dispHumanScore);
+
+const dispComputerScore = document.createElement("div");
+dispComputerScore.innerHTML = 'Computer:' + ' ' + computerScore;
+scores.appendChild(dispComputerScore);
+
+const announcer = document.createElement("div");
+announcer.id = "#announcer"
+announcer.innerHTML = "Hello World!";
+announcer.style.marginLeft = "530px";
+announcer.style.marginTop = "100px";
+announcer.style.fontSize = "40px";
+document.body.appendChild(announcer);
 
 // logic to play a round
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === "rock" && computerChoice === "rock") {
-        console.log ("It's a tie! Both chose rock!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "It's a tie!" + "<br>" + "Both chose rock!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "rock" && computerChoice === "paper") {
         computerScore++;
-        console.log ("You lose! Paper beats rock!");
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You lose!" + "<br>" + "Paper beats rock!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "rock" && computerChoice === "scissors") {
         humanScore++
-        console.log ("You win! Rock beats scissors!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You win!" + "<br>" + "Rock beats scissors!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "paper" && computerChoice === "rock") {
         humanScore++
-        console.log ("You win! Paper beats rock!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You win!" + "<br>" + "Paper beats rock!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "paper" && computerChoice === "paper") {
-        console.log ("It's a tie! Both chose paper!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "It's a tie!" + "<br>" + "Both chose paper!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "paper" && computerChoice === "scissors") {
         computerScore++
-        console.log ("You lose! Scissors beats paper!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You lose!" + "<br>" + "Scissors beats paper!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "scissors" && computerChoice === "rock") {
         computerScore++
-        console.log ("You lose! Rock beats scissors!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You lose!" + "<br>" + "Rock beats scissors!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "scissors" && computerChoice === "paper") {
         humanScore++
-        console.log ("You win! Scissors beats paper!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "You win!" + "<br>" + "Scissors beats paper!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
     else if (humanChoice === "scissors" && computerChoice === "scissors") {
-        console.log ("It's a tie! Both chose scissors!")
-        console.log ("Your score:" + humanScore);
-        console.log ("Computer score:" + computerScore);
+        announcer.innerHTML = "It's a tie!" + "<br>" + "Both chose scissors!" + "<br>" + " " + "<br>" + "Your score:" + " " + humanScore + "<br>" + "Computer score:" + " " + computerScore;
     }
-    else console.error("Unexpected outcome!" + humanChoice + "and" + computerChoice);
-}
+    else announcer.innerHTML = "You did something wrong!";
 
-// logic to play a game to five rounds
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-}
+    dispHumanScore.innerHTML = 'Human:' + ' ' + humanScore;
+    dispComputerScore.innerHTML = 'Computer:' + ' ' + computerScore;
 
-playGame();
+    if (humanScore === 5) alert("Human wins!");
+    if (computerScore === 5) alert("Computer wins!");
+}
